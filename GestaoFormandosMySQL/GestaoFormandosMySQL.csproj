@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D5D0814-2BAB-4DB7-8749-2364E93673B4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GestaoFormandosMySQL</RootNamespace>
+    <AssemblyName>GestaoFormandosMySQL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=8.0.3.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext.8.0.3\lib\net461\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.netstandard, Version=5.5.13.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.netstandard.5.5.13.2\lib\netstandard2.0\itextsharp.netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.1\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.8.0.0\lib\net462\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.1\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.8.0.2\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>.\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Xml, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.4.5.0\lib\net461\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DBConnect.cs" />
+    <Compile Include="DBConnectFormadores.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormApagarArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormApagarArea.Designer.cs">
+      <DependentUpon>FormApagarArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormApagarFormadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormApagarFormadores.Designer.cs">
+      <DependentUpon>FormApagarFormadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormApagarFormandos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormApagarFormandos.Designer.cs">
+      <DependentUpon>FormApagarFormandos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormApagarNacionalidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormApagarNacionalidade.Designer.cs">
+      <DependentUpon>FormApagarNacionalidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAtualizarArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAtualizarArea.Designer.cs">
+      <DependentUpon>FormAtualizarArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAtualizarFormadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAtualizarFormadores.Designer.cs">
+      <DependentUpon>FormAtualizarFormadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAtualizarFormandos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAtualizarFormandos.Designer.cs">
+      <DependentUpon>FormAtualizarFormandos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAtualizarNacionalidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAtualizarNacionalidade.Designer.cs">
+      <DependentUpon>FormAtualizarNacionalidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAutenticacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAutenticacao.Designer.cs">
+      <DependentUpon>FormAutenticacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfig.Designer.cs">
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormExportarDados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExportarDados.Designer.cs">
+      <DependentUpon>FormExportarDados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInserirArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInserirArea.Designer.cs">
+      <DependentUpon>FormInserirArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInserirFormadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInserirFormadores.Designer.cs">
+      <DependentUpon>FormInserirFormadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInserirFormandos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInserirFormandos.Designer.cs">
+      <DependentUpon>FormInserirFormandos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInserirNacionalidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInserirNacionalidade.Designer.cs">
+      <DependentUpon>FormInserirNacionalidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListarArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListarArea.Designer.cs">
+      <DependentUpon>FormListarArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListarFormadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListarFormadores.Designer.cs">
+      <DependentUpon>FormListarFormadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListarFormandos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListarFormandos.Designer.cs">
+      <DependentUpon>FormListarFormandos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListarNacionalidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListarNacionalidade.Designer.cs">
+      <DependentUpon>FormListarNacionalidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Geral.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormApagarArea.resx">
+      <DependentUpon>FormApagarArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormApagarFormadores.resx">
+      <DependentUpon>FormApagarFormadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormApagarFormandos.resx">
+      <DependentUpon>FormApagarFormandos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormApagarNacionalidade.resx">
+      <DependentUpon>FormApagarNacionalidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAtualizarArea.resx">
+      <DependentUpon>FormAtualizarArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAtualizarFormadores.resx">
+      <DependentUpon>FormAtualizarFormadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAtualizarFormandos.resx">
+      <DependentUpon>FormAtualizarFormandos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAtualizarNacionalidade.resx">
+      <DependentUpon>FormAtualizarNacionalidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAutenticacao.resx">
+      <DependentUpon>FormAutenticacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfig.resx">
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExportarDados.resx">
+      <DependentUpon>FormExportarDados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInserirArea.resx">
+      <DependentUpon>FormInserirArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInserirFormadores.resx">
+      <DependentUpon>FormInserirFormadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInserirFormandos.resx">
+      <DependentUpon>FormInserirFormandos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInserirNacionalidade.resx">
+      <DependentUpon>FormInserirNacionalidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListarArea.resx">
+      <DependentUpon>FormListarArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListarFormadores.resx">
+      <DependentUpon>FormListarFormadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListarFormandos.resx">
+      <DependentUpon>FormListarFormandos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListarNacionalidade.resx">
+      <DependentUpon>FormListarNacionalidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\24x24\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\24x24\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\24x24\Yes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\24x24\Redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\24x24\List.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\24x24\View.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\24x24\Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\24x24\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
