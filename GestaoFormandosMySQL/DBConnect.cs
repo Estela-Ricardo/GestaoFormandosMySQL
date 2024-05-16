@@ -1,21 +1,22 @@
-﻿using MySql.Data.MySqlClient;
+﻿//using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Odbc;
 
 namespace GestaoFormandosMySQL
 {
     internal class DBConnect
     {
-        private MySqlConnection connection;
-        private string server;
-        private string username;
-        private string password;
-        private string database;
-        private string port;
+        private OdbcConnection connection;
+        //private string server;
+        //private string username;
+        //private string password;
+        //private string database;
+        //private string port;
 
         public DBConnect()
         {
@@ -24,16 +25,17 @@ namespace GestaoFormandosMySQL
 
         private void Initialize()
         {
-            server = Geral.ipserver;
-            username = Geral.username;
-            password = Geral.password;
-            database = Geral.database;
-            port = Geral.portaserver;
+            //server = Geral.ipserver;
+            //username = Geral.username;
+            //password = Geral.password;
+            //database = Geral.database;
+            //port = Geral.portaserver;
 
-            string connectionString = "Server=" + server + ";Port=" + port + ";Database=" + database +
-                ";Uid=" + username + ";Pwd=" + password + ";";
+            string connectionString = "DSN=GestaoFormandos";
+                //"Server=" + server + ";Port=" + port + ";Database=" + database +
+                //";Uid=" + username + ";Pwd=" + password + ";";
 
-            connection = new MySqlConnection(connectionString);
+            connection = new OdbcConnection(connectionString);
         }
 
         private bool OpenConnection()
@@ -43,7 +45,7 @@ namespace GestaoFormandosMySQL
                 connection.Open();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
@@ -57,7 +59,7 @@ namespace GestaoFormandosMySQL
                 connection.Close();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
@@ -77,7 +79,7 @@ namespace GestaoFormandosMySQL
                     connection.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -92,11 +94,11 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     count = int.Parse(cmd.ExecuteScalar().ToString());
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -117,13 +119,13 @@ namespace GestaoFormandosMySQL
                 if (OpenConnection())
                 {
                     ultimoID = 2;
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     //ultimoID = int.Parse(cmd.ExecuteScalar().ToString());
                     int.TryParse(cmd.ExecuteScalar().ToString(), out ultimoID);
                     ultimoID++;
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -147,11 +149,11 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
                 flag = false;
@@ -176,11 +178,11 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
                 flag = false;
@@ -204,8 +206,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
                         nome = dataReader.GetString(0);
@@ -220,7 +222,7 @@ namespace GestaoFormandosMySQL
                     dataReader.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -241,11 +243,11 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
                 flag = false;
@@ -265,8 +267,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
 
                     int idxLinha = 0;
                     while (dr.Read())
@@ -282,7 +284,7 @@ namespace GestaoFormandosMySQL
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -324,8 +326,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
 
                     int idxLinha = 0;
                     while (dr.Read())
@@ -341,7 +343,7 @@ namespace GestaoFormandosMySQL
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -362,11 +364,11 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
                 flag = false;
@@ -388,11 +390,11 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
                 flag = false;
@@ -414,8 +416,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         combo.Items.Add(dr[2].ToString() + " - " + dr["alf2"].ToString() +
@@ -424,7 +426,7 @@ namespace GestaoFormandosMySQL
                     dr.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -445,8 +447,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         nacionalidade = dr[2].ToString() + " - " + dr["alf2"].ToString() +
@@ -455,7 +457,7 @@ namespace GestaoFormandosMySQL
                     dr.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -476,8 +478,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         alf2 = dr["alf2"].ToString();
@@ -487,7 +489,7 @@ namespace GestaoFormandosMySQL
                     dr.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -508,11 +510,11 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
                 flag = false;
@@ -535,7 +537,7 @@ namespace GestaoFormandosMySQL
 
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     if (cmd.ExecuteScalar() != null)
                     {
                         id_user = cmd.ExecuteScalar().ToString();
@@ -543,7 +545,7 @@ namespace GestaoFormandosMySQL
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -561,8 +563,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
 
                     int idxLinha = 0;
                     while (dr.Read())
@@ -575,7 +577,7 @@ namespace GestaoFormandosMySQL
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -596,7 +598,7 @@ namespace GestaoFormandosMySQL
 
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     if (cmd.ExecuteScalar() != null)
                     {
                         id_user = cmd.ExecuteScalar().ToString();
@@ -604,7 +606,7 @@ namespace GestaoFormandosMySQL
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -630,11 +632,11 @@ namespace GestaoFormandosMySQL
                 string query = "call pUSuccessLogin('" + userName + "', '" + result + "');";
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -653,7 +655,7 @@ namespace GestaoFormandosMySQL
                 string query = "select falhas from utilizador where nome_utilizador = '" + userName + "' and estado = 'I';";
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
                     if (cmd.ExecuteScalar() != null)
                     {
                         nfalhas = int.Parse(cmd.ExecuteScalar().ToString());
@@ -661,7 +663,7 @@ namespace GestaoFormandosMySQL
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -683,8 +685,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         combo.Items.Add(dr[0].ToString());
@@ -692,7 +694,7 @@ namespace GestaoFormandosMySQL
                     dr.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -713,8 +715,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         chkLstBox.Items.Add(dr[0].ToString());
@@ -722,7 +724,7 @@ namespace GestaoFormandosMySQL
                     dr.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -743,8 +745,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         combo.Items.Add(dr[0].ToString());
@@ -752,7 +754,7 @@ namespace GestaoFormandosMySQL
                     dr.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -784,8 +786,8 @@ namespace GestaoFormandosMySQL
             {
                 if (OpenConnection())
                 {
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MySqlDataReader dr = cmd.ExecuteReader();
+                    OdbcCommand cmd = new OdbcCommand(query, connection);
+                    OdbcDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
                         txtDados.Text = txtDados.Text + "\r\n";
@@ -800,7 +802,7 @@ namespace GestaoFormandosMySQL
                     dr.Close();
                 }
             }
-            catch (MySqlException ex)
+            catch (OdbcException ex)
             {
                 MessageBox.Show(ex.Message);
             }

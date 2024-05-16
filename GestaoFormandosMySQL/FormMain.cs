@@ -238,9 +238,9 @@ namespace GestaoFormandosMySQL
                         {
                             sw.WriteLine(formConfig.mtxtIP.Text.Replace(",", "."));
                             sw.WriteLine(formConfig.mtxtPorta.Text);
-                            sw.WriteLine(formConfig.txtUsername.Text);
-                            sw.WriteLine(formConfig.txtPassword.Text);
-                            sw.WriteLine(formConfig.txtDatabase.Text);
+                            //sw.WriteLine(formConfig.txtUsername.Text);
+                            //sw.WriteLine(formConfig.txtPassword.Text);
+                            //sw.WriteLine(formConfig.txtDatabase.Text);
                         }
                     }
                     else
@@ -266,7 +266,7 @@ namespace GestaoFormandosMySQL
         { 
             bool flag = true;
             string path = AppDomain.CurrentDomain.BaseDirectory + "config.txt";
-            string[] dados = new string[5];
+            string[] dados = new string[2];
 
             try
             {
@@ -299,9 +299,9 @@ namespace GestaoFormandosMySQL
                 Geral.ipserver = Geral.ipserver + int.Parse(octectos[i]);
 
                 Geral.portaserver = dados[1];
-                Geral.username = dados[2];
-                Geral.password = dados[3];
-                Geral.database = dados[4];
+                //Geral.username = dados[2];
+                //Geral.password = dados[3];
+                //Geral.database = dados[4];
             }
             catch (Exception ex)
             {
