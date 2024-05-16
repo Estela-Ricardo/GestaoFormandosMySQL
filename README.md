@@ -62,15 +62,8 @@ disponíveis na aplicação.
 
 ## Configuração do Servidor 🛠️
 
-Antes de utilizar a aplicação pela primeira vez, é necessário configurar o servidor com o endereço IP e a porta corretos. Este processo de configuração é crucial para garantir a comunicação adequada entre a aplicação e o servidor.
-
-Para configurar o servidor:
-
-1. **Endereço IP:** Introduza o endereço IP do servidor onde a base de dados está hospedada. Certifique-se de fornecer o endereço IP correto para estabelecer uma conexão bem-sucedida com o servidor.
-
-2. **Porta:** Indique o número da porta através da qual a aplicação se comunicará com o servidor. Certifique-se de utilizar a porta correta para evitar problemas de conexão.
-
-Após configurar o servidor com o endereço IP e a porta adequados, a aplicação estará pronta para ser utilizada. Esta configuração só precisa ser realizada uma vez, durante o primeiro acesso à aplicação ou após qualquer alteração nos detalhes de conexão com o servidor.
+Antes de utilizar a aplicação pela primeira vez, é necessário configurar a ligação ao servidor e à base de dados corretamente. Ou, alternativamente, utilizar a versão odbc para configuração.
+Este processo de configuração é fundamental para garantir a comunicação adequada entre a aplicação e o servidor.
 
 ## Suporte
 Se encontrar algum problema ou tiver dúvidas sobre a utilização da aplicação, entre em contacto com o suporte técnico através do email: suporte@gestaoformandos.com.
